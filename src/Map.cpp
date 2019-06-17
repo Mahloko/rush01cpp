@@ -25,6 +25,8 @@ Map::~Map()
 {
     getch();
     endwin();
+    delwin(_win
+    );
     return ;
 }
 

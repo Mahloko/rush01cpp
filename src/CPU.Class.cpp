@@ -44,4 +44,4 @@ std::list<std::string> Cpu::getInfo(void)
 //     return (*this);
 // }
 
-Cpu::~Cpu(void){}
+Cpu::~Cpu(void) {}
