@@ -8,7 +8,7 @@ Cpu::Cpu(Cpu const &copy)
     return;
 }
 
-void Cpu::getCpu(void)
+void Cpu::monitor(void)
 {
     system("system_profiler SPHardwareDataType >> Cpu.log");
 }

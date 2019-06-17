@@ -9,15 +9,15 @@
 
 int main(void)
 {
-    OSInfo *os = new OSInfo();
-    Cpu *cpu = new Cpu();
-    Date *date = new Date();
-    Hostname *host = new Hostname();
-    Ram *ram = new Ram();
-    os->getOSInfo();
-    cpu->getCpu();
-    date->getDate();
-    host->getHostname();
-    ram->getRam();
+    IMonitorModule *os = new OSInfo();
+    IMonitorModule *cpu = new Cpu();
+    IMonitorModule *date = new Date();
+    IMonitorModule *host = new Hostname();
+    IMonitorModule *ram = new Ram();
+    os->monitor();
+    cpu->monitor();
+    date->monitor();
+    host->monitor();
+    ram->monitor();
     return (0);
 }

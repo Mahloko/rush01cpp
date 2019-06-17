@@ -8,7 +8,7 @@ OSInfo::OSInfo(OSInfo const &copy)
     return;
 }
 
-void OSInfo::getOSInfo(void)
+void OSInfo::monitor(void)
 {
     system("sw_vers >> osinfo.log");
 }

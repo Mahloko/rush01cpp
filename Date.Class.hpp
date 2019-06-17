@@ -1,17 +1,15 @@
 #ifndef __Date_CLASS__
 #define __Date_CLASS__
 
-#include <string>
-#include <iostream>
-#include <stdlib.h>
+#include "IMonitorModule.hpp"
 
-class Date
+class Date : public IMonitorModule
 {
     private:
     public:
         Date(void);
         Date(Date const &copy);
-        void getDate(void);
+        void monitor(void);
         Date &operator=(Date const &rhs);
         ~Date(void);
 };

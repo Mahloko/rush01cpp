@@ -8,7 +8,7 @@ Hostname::Hostname(Hostname const &copy)
     return;
 }
 
-void Hostname::getHostname(void)
+void Hostname::monitor(void)
 {
     system("hostname >> Hostname.log");
 }

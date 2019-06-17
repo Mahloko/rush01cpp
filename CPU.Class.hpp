@@ -1,17 +1,15 @@
 #ifndef __CPU_CLASS__
 #define __CPU_CLASS__
 
-#include <string>
-#include <iostream>
-#include <stdlib.h>
+#include "IMonitorModule.hpp"
 
-class Cpu
+class Cpu : public IMonitorModule
 {
     private:
     public:
         Cpu(void);
         Cpu(Cpu const &copy);
-        void getCpu(void);
+        void monitor(void);
         Cpu &operator=(Cpu const &rhs);
         ~Cpu(void);
 };

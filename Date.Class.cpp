@@ -8,7 +8,7 @@ Date::Date(Date const &copy)
     return;
 }
 
-void Date::getDate(void)
+void Date::monitor(void)
 {
     system("date >> date.log");
 }

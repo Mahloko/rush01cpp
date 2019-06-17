@@ -8,7 +8,7 @@ Ram::Ram(Ram const &copy)
     return;
 }
 
-void Ram::getRam(void)
+void Ram::monitor(void)
 {
     system("system_profiler SPHardwareDataType | grep Memory >> Ram.log");
 }

@@ -1,17 +1,15 @@
 #ifndef __OSINFO_CLASS__
 #define __OSINFO_CLASS__
 
-#include <string>
-#include <iostream>
-#include <stdlib.h>
+#include "IMonitorModule.hpp"
 
-class OSInfo
+class OSInfo : public IMonitorModule
 {
     private:
     public:
         OSInfo(void);
         OSInfo(OSInfo const &copy);
-        void getOSInfo(void);
+        void monitor(void);
         OSInfo &operator=(OSInfo const &rhs);
         ~OSInfo(void);
 };
