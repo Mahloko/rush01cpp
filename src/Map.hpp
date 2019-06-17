@@ -4,6 +4,7 @@
 # include <iostream>
 # include <ncurses.h>
 # include <string>
+#include <list>
 
 class Map
 {
@@ -24,7 +25,7 @@ class Map
         WINDOW    *getWindow() const;
         void    getDim(WINDOW *);
         void    display() const;
-        void    gameBackground();
+        void    fillMeIn(std::list<std::string>);
 
     protected:
         int     _len;
