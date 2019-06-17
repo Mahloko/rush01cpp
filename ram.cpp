@@ -22,35 +22,40 @@ int main(int argc, const char * argv[]) {
 	std::ofstream read("ramfile");
     long long free_memory;
     long long used_memory;
-		
+
+	/* 
+	* Total memory
+	*/
+
 	int mib[2];
 	int64_t physical_memory;
 	mib[0] = CTL_HW;
 	mib[1] = HW_MEMSIZE;
 	size_t length = sizeof(int64_t);
+	if ( read.good() ) {
+		sysctl(mib, 2, &physical_memory, &length, NULL, 0);
+		read << "Total Memory " << physical_memory << '\n';
 
-	sysctl(mib, 2, &physical_memory, &length, NULL, 0);
-	read << "Total Memory " << physical_memory << '\n';
+		mach_port = mach_host_self();
+		count = sizeof(vm_stats) / sizeof(natural_t);
+		if (KERN_SUCCESS == host_page_size(mach_port, &page_size) &&
+			KERN_SUCCESS == host_statistics64(mach_port, HOST_VM_INFO,
+											(host_info64_t)&vm_stats, &count))
+		{
+			free_memory = (int64_t)vm_stats.free_count * (int64_t)page_size;
 
-	mach_port = mach_host_self();
-	count = sizeof(vm_stats) / sizeof(natural_t);
-	if (KERN_SUCCESS == host_page_size(mach_port, &page_size) &&
-		KERN_SUCCESS == host_statistics64(mach_port, HOST_VM_INFO,
-										(host_info64_t)&vm_stats, &count))
-	{
-		free_memory = (int64_t)vm_stats.free_count * (int64_t)page_size;
+			read << "Free Memory " << free_memory << '\n';
 
-		read << "Free Memory " << free_memory << '\n';
-
-		used_memory = ((int64_t)vm_stats.active_count +
-								(int64_t)vm_stats.inactive_count +
-								(int64_t)vm_stats.wire_count) *  (int64_t)page_size;
-		read << "Used Memory " << used_memory;
-		
-		/*
-		* pipe free and used memory into stream 
-		*/
-		read.close();
+			used_memory = ((int64_t)vm_stats.active_count +
+									(int64_t)vm_stats.inactive_count +
+									(int64_t)vm_stats.wire_count) *  (int64_t)page_size;
+			read << "Used Memory " << used_memory;
+			
+			/*
+			* pipe free and used memory into stream 
+			*/
+			read.close();
+		}
 	}
     return (0);
 }
