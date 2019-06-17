@@ -1,30 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmahloko <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/17 03:29:12 by mmahloko          #+#    #+#             */
-/*   Updated: 2019/06/17 04:09:47 by mmahloko         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "OSInfo.Class.hpp"
+#include "CPU.Class.hpp"
+#include "Date.Class.hpp"
+#include "Hostname.Class.hpp"
+#include "RAM.Class.hpp"
 
+#include <cstdlib>
 #include <iostream>
-#include <string>
-#include <sys/sysctl.h>
-char* getMachine( void )
-{
-    size_t  tst = 100;
 
-    char    cpy[100];
-    sysctlbyname("ls.model", &cpy, &tst, NULL, 0);
-    char    *ret = cpy;
-	return (ret);
-}
-
-int main()
+int main(void)
 {
-    // std::cout << getCPUName();
-	return (0);
+    OSInfo *os = new OSInfo();
+    Cpu *cpu = new Cpu();
+    Date *date = new Date();
+    Hostname *host = new Hostname();
+    Ram *ram = new Ram();
+    os->getOSInfo();
+    cpu->getCpu();
+    date->getDate();
+    host->getHostname();
+    ram->getRam();
+    return (0);
 }

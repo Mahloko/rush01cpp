@@ -72,5 +72,24 @@ void    Map::display() const
 {
     clear();
     wrefresh(stdscr);
+    wrefresh(_win);
 }
 
+void    Map::fillMeIn(std::list<std::string> stuff_from_file)
+{
+    int i = 1;
+    /*
+	 * MAKE function for opening and reading stuff from files!
+	 * add date to end of list, TBD
+	 * create iterators to navigate list and then display contents
+	*/
+
+	std::list<std::string>::const_iterator 		it = stuff_from_file.begin();
+	std::list<std::string>::const_iterator		ite = stuff_from_file.end();
+	while ( it != ite )
+	{
+		mvwprintw(_win, i, 1, static_cast<std::string>(*it).c_str());
+		it++;
+        i++;
+	}
+}
