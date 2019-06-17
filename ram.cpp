@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
 	size_t length = sizeof(int64_t);
 	if ( read.good() ) {
 		sysctl(mib, 2, &physical_memory, &length, NULL, 0);
-		read << "Total Memory " << physical_memory << '\n';
+		read << "Total Memory " << physical_memory/10000 << '\n';
 
 		mach_port = mach_host_self();
 		count = sizeof(vm_stats) / sizeof(natural_t);
@@ -43,13 +43,13 @@ int main(int argc, const char * argv[]) {
 											(host_info64_t)&vm_stats, &count))
 											/* fix casting */
 		{
-			free_memory = static_cast<int64_t>(vm_stats.free_count) * static_cast<int64_t>(page_size);
+			free_memory = (static_cast<int64_t>(vm_stats.free_count) * static_cast<int64_t>(page_size)) / 1000;
 
 			read << "Free Memory " << free_memory << '\n';
 
-			used_memory = ( static_cast<int64_t>( vm_stats.active_count ) +
+			used_memory = (( static_cast<int64_t>( vm_stats.active_count ) +
 									static_cast<int64_t>( vm_stats.inactive_count ) +
-									static_cast<int64_t>( vm_stats.wire_count ) *  static_cast<int64_t>( page_size ) );
+									static_cast<int64_t>( vm_stats.wire_count ) *  static_cast<int64_t>( page_size ) )) / 1000;
 			read << "Used Memory " << used_memory;
 			
 			/*
