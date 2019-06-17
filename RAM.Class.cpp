@@ -14,8 +14,8 @@ std::list<std::string> Ram::getInfo(void)
 	std::string line;
 	std::list<std::string> stuff_from_file;
 
-	int64_t _mem;
-	uint64_t _page_size;
+	int64_t _mem = 0;
+	uint64_t _page_size = 0;
 
 	/*
 	 * delete file, has all the info about sys
