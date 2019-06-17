@@ -1,19 +1,15 @@
 #ifndef __RAM_CLASS__
 #define __RAM_CLASS__
 
-#include <list>
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <stdlib.h>
+#include "IMonitorModule.hpp"
 
-class Ram
+class Ram : public IMonitorModule
 {
     private:
     public:
         Ram(void);
         Ram(Ram const &copy);
-        std::list<std::string> getRam(void);
+        std::list<std::string> getInfo(void);
         // Ram &operator=(Ram const &rhs);
         ~Ram(void);
 };

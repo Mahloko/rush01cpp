@@ -1,10 +1,5 @@
+
 #include "Map.hpp"
-#include <cstdlib>
-#include <unistd.h>
-#include <unistd.h>
-#include <iostream>
-#include <algorithm>
-#include <ncurses.h>
 #include "RAM.Class.hpp"
 #include "CPU.Class.hpp"
 #include "Date.Class.hpp"
@@ -31,22 +26,23 @@ int		main(void)
 	scr1.newWindow();
 	scr2.newWindow();
 	scr3.newWindow();
-	halfdelay(1);
+	nodelay(stdscr, true);
 	while((input = getch()) != 'q')
 	{
-		clear();
-		scr1.fillMeIn(cpu.getCpu());
-		scr2.fillMeIn(hst.getHostname());
-		mvwprintw(scr2.getWindow(), 2, 1, static_cast<std::string>(*(date.getDate().begin())).c_str());
-		mvwprintw(scr2.getWindow(), 3, 1, static_cast<std::string>(*(ram.getRam().begin())).c_str());
-		scr3.fillMeIn(os.getOSInfo());
 		scr1.mapBox();
 		scr2.mapBox();
 		scr3.mapBox();
+		refresh();
+		scr1.fillMeIn(cpu.getInfo());
+		scr2.fillMeIn(hst.getInfo());
+		mvwprintw(scr2.getWindow(), 2, 1, static_cast<std::string>(*(date.getInfo().begin())).c_str());
+		mvwprintw(scr2.getWindow(), 3, 1, static_cast<std::string>(*(ram.getInfo().begin())).c_str());
+		scr3.fillMeIn(os.getInfo());
 		map.display();
 		scr1.display();
 		scr2.display();
 		scr3.display();
+		clear();
 	}
 	// sleep(100);
 	getch();

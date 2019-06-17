@@ -8,7 +8,7 @@ OSInfo::OSInfo(OSInfo const &copy)
     return;
 }
 
-std::list<std::string> OSInfo::getOSInfo(void)
+std::list<std::string> OSInfo::getInfo(void)
 {
     std::ifstream 				file_from_stream("osinfo.log");
 	std::string 				line;

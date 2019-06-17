@@ -1,19 +1,15 @@
 #ifndef __Date_CLASS__
 #define __Date_CLASS__
 
-#include <list>
-#include <string>
-#include <fstream>
-#include <stdlib.h>
-#include <iostream>
+#include "IMonitorModule.hpp"
 
-class Date
+class Date : public IMonitorModule
 {
     private:
     public:
         Date(void);
         Date(Date const &copy);
-        std::list<std::string> getDate(void);
+        std::list<std::string> getInfo(void);
         // Date &operator=(Date const &rhs);
         ~Date(void);
 };

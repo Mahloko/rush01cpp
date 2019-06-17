@@ -1,19 +1,15 @@
 #ifndef __HOSTNAME_CLASS__
 #define __HOSTNAME_CLASS__
 
-#include <string>
-#include <iostream>
-#include <list>
-#include <stdlib.h>
-#include <fstream>
+#include "IMonitorModule.hpp"
 
-class Hostname
+class Hostname : public IMonitorModule
 {
     private:
     public:
         Hostname(void);
         Hostname(Hostname const &copy);
-        std::list<std::string> getHostname(void);
+        std::list<std::string> getInfo(void);
         // Hostname &operator=(Hostname const &rhs);
         ~Hostname(void);
 };

@@ -8,7 +8,7 @@ Date::Date(Date const &copy)
     return;
 }
 
-std::list<std::string> Date::getDate(void)
+std::list<std::string> Date::getInfo(void)
 {
     std::ifstream 				file_from_stream("date.log");
 	std::string 				line;

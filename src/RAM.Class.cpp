@@ -8,7 +8,7 @@ Ram::Ram(Ram const &copy)
     return;
 }
 
-std::list<std::string> Ram::getRam(void)
+std::list<std::string> Ram::getInfo(void)
 {
     std::ifstream 				file_from_stream("Ram.log");
 	std::string 				line;

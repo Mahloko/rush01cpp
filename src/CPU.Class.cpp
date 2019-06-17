@@ -1,6 +1,4 @@
 #include "CPU.Class.hpp"
-//Place the following include in proper places
-#include <fstream>
 
 Cpu::Cpu(void){}
 
@@ -10,7 +8,7 @@ Cpu::Cpu(Cpu const &copy)
     return;
 }
 /* Needs to be modified */
-std::list<std::string> Cpu::getCpu(void)
+std::list<std::string> Cpu::getInfo(void)
 {
     std::ifstream 				file_from_stream("Cpu.log");
 	std::string 				line;
@@ -38,6 +36,7 @@ std::list<std::string> Cpu::getCpu(void)
     // file_from_stream.close();
     return  (stuff_from_file);
 }
+
 
 // Cpu& Cpu::operator=(Cpu const &rhs)
 // {

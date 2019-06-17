@@ -8,7 +8,7 @@ Hostname::Hostname(Hostname const &copy)
     return;
 }
 
-std::list<std::string> Hostname::getHostname(void)
+std::list<std::string> Hostname::getInfo(void)
 {
     std::ifstream 				file_from_stream("Hostname.log");
 	std::string 				line;
