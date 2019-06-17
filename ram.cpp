@@ -41,14 +41,15 @@ int main(int argc, const char * argv[]) {
 		if (KERN_SUCCESS == host_page_size(mach_port, &page_size) &&
 			KERN_SUCCESS == host_statistics64(mach_port, HOST_VM_INFO,
 											(host_info64_t)&vm_stats, &count))
+											/* fix casting */
 		{
-			free_memory = (int64_t)vm_stats.free_count * (int64_t)page_size;
+			free_memory = static_cast<int64_t>(vm_stats.free_count) * static_cast<int64_t>(page_size);
 
 			read << "Free Memory " << free_memory << '\n';
 
-			used_memory = ((int64_t)vm_stats.active_count +
-									(int64_t)vm_stats.inactive_count +
-									(int64_t)vm_stats.wire_count) *  (int64_t)page_size;
+			used_memory = ( static_cast<int64_t>( vm_stats.active_count ) +
+									static_cast<int64_t>( vm_stats.inactive_count ) +
+									static_cast<int64_t>( vm_stats.wire_count ) *  static_cast<int64_t>( page_size ) );
 			read << "Used Memory " << used_memory;
 			
 			/*
