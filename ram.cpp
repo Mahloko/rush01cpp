@@ -4,6 +4,8 @@
 #include <mach/mach_host.h>
 #include <fstream>
 #include <iostream>
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 int main(int argc, const char * argv[]) {
     vm_size_t page_size;
@@ -15,10 +17,20 @@ int main(int argc, const char * argv[]) {
 	* create ramfile
 	* read ramfile
 	*/
+
 	system("touch ramfile");
 	std::ofstream read("ramfile");
     long long free_memory;
     long long used_memory;
+		
+	int mib[2];
+	int64_t physical_memory;
+	mib[0] = CTL_HW;
+	mib[1] = HW_MEMSIZE;
+	size_t length = sizeof(int64_t);
+
+	sysctl(mib, 2, &physical_memory, &length, NULL, 0);
+	read << "Total Memory " << physical_memory << '\n';
 
 	mach_port = mach_host_self();
 	count = sizeof(vm_stats) / sizeof(natural_t);
