@@ -14,8 +14,8 @@ std::list<std::string> Ram::getInfo(void)
 	std::string line;
 	std::list<std::string> stuff_from_file;
 
-	int64_t _mem = 0;
-	uint64_t _page_size = 0;
+	int64_t _mem = 2;
+	uint64_t _page_size = 1;
 
 	/*
 	 * delete file, has all the info about sys
@@ -29,7 +29,7 @@ std::list<std::string> Ram::getInfo(void)
 		reinterpret_cast<host_info_t>(&vmstat),
 		&count);
 	int perc = ((vmstat.active_count + vmstat.inactive_count + vmstat.wire_count) * _page_size) / _mem * 100;
-	std::string perc_str = std::to_string(perc / 10000) + " MB";
+	std::string perc_str = std::to_string(perc / 10024) + " MB";
 	stuff_from_file.push_back("Memory Usage: " + perc_str);
 	if (file_from_stream.good())
 		system("rm Ram.log");
