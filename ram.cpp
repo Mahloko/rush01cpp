@@ -11,6 +11,10 @@ int main(int argc, const char * argv[]) {
     mach_msg_type_number_t count;
     vm_statistics64_data_t vm_stats;
 	
+	/*
+	* create ramfile
+	* read ramfile
+	*/
 	system("touch ramfile");
 	std::ofstream read("ramfile");
     long long free_memory;
@@ -30,6 +34,10 @@ int main(int argc, const char * argv[]) {
 								(int64_t)vm_stats.inactive_count +
 								(int64_t)vm_stats.wire_count) *  (int64_t)page_size;
 		read << "Used Memory " << used_memory;
+		
+		/*
+		* pipe free and used memory into stream 
+		*/
 		read.close();
 	}
     return (0);
