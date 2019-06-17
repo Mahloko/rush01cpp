@@ -11,8 +11,8 @@
 
 class IMonitorModule
 {
-    public:
-        virtual std::list<std::string> getInfo() = 0;
+public:
+    virtual std::list<std::string> getInfo() = 0;
 };
 
 #endif
