@@ -1,0 +1,6 @@
+cpu module
+mach_host_self
+sysctlbyname
+
+ram 
+host_page_size

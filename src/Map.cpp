@@ -52,6 +52,7 @@ void    Map::getDim(WINDOW *win)
 void    Map::mapBox() const
 {
     box(_win, 0, 0);
+    wrefresh(_win);
     return ;
 }
 
@@ -69,7 +70,7 @@ WINDOW    *Map::getWindow() const
 
 void    Map::display() const
 {
-    // clear();
+    clear();
     wrefresh(stdscr);
-    wrefresh(_win);
 }
+

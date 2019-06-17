@@ -5,7 +5,8 @@
 # include <ncurses.h>
 # include <string>
 
-class Map
+
+class Map 
 {
     public:
         int     yMax;
